@@ -1,0 +1,11 @@
+{
+  "upload": {
+    "type": "json",
+    "files": "locales/en/*.json",
+    "deprecate": "project"
+  },
+  "download": {
+    "files": "public/locales/${lang}/${file}",
+    "includeSourceLang": true
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "extends": ["@releaseband/eslint-config-typescript-react"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}
