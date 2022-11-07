@@ -1,5 +1,5 @@
-import { SpineParser } from '@pixi-spine/loader-4.0';
-import { Spine } from '@pixi-spine/runtime-4.0';
+import { SpineParser } from '@pixi-spine/loader-4.1';
+import { Spine } from '@pixi-spine/runtime-4.1';
 import * as PIXI from 'pixi.js';
 
 import { spineAnimations } from './store';
@@ -28,12 +28,11 @@ export async function loadAssets(
   progressCallback?: (progress: number) => void,
 ): Promise<void> {
   const loader = PIXI.Loader.shared;
+  const loaderFactory = loaderFactoryBuilder(loader);
 
   const config = await loadData<string[]>(configURL);
 
   if (!config) throw new Error(`${configURL} not loaded`);
-
-  const loaderFactory = loaderFactoryBuilder(loader);
 
   config.map(urlConverter).forEach(
     loaderFactory((resource) => {
@@ -65,6 +64,7 @@ export async function loadAssets(
 
 export const createAnimations = (name: string): Spine => {
   const skeleton = spineAnimations.get(name);
+
   if (!skeleton) throw new Error(`${name} not name`);
   return new Spine(skeleton);
 };
@@ -72,11 +72,14 @@ export const createAnimations = (name: string): Spine => {
 export const installer = async (app: PIXI.Application): Promise<void> => {
   await loadAssets('config.json');
 
+  // const ANIM = 'popup_start_idle';
+  const ANIM = 'ending';
+
   const { width, height } = app.view;
 
-  const spine = createAnimations('popup_start_idle');
+  const spine = createAnimations(ANIM);
   spine.position.set(width / 2, height / 2);
-  spine.state.setAnimation(0, 'popup_start_idle', true);
+  spine.state.setAnimation(0, ANIM, true);
 
   app.stage.addChild(spine);
 };

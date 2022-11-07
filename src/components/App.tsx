@@ -1,6 +1,28 @@
+import { Application } from 'pixi.js';
+import { useEffect, useMemo, useRef } from 'react';
+
 import { installer } from '../utils';
-import Canvas from './Canvas';
 
 export default function App() {
-  return <Canvas width={1920} height={1080} onMount={installer} />;
+  const ref = useRef<HTMLDivElement>(null);
+  const app = useMemo(() => new Application({ width: 1920, height: 1080 }), []);
+
+  useEffect(() => {
+    installer(app).catch(() => undefined);
+    return () => {
+      app.view.remove();
+      app.destroy();
+    };
+  }, [app]);
+
+  useEffect(() => {
+    ref.current?.appendChild(app.view);
+  }, [app, ref]);
+
+  return (
+    <>
+      <div ref={ref} />
+      {/* <SelectFile onChange={changeFileHandler} /> */}
+    </>
+  );
 }

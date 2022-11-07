@@ -7,6 +7,7 @@ export type CanvasProps = {
   onMount: (app: PIXI.Application) => Promise<void>;
 };
 
+// TODO: не используется
 function Canvas({ width = 1920, height = 1080, onMount }: CanvasProps) {
   const mount = useCallback(onMount, [onMount]);
   const ref = useRef<HTMLCanvasElement>(null);

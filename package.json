@@ -16,7 +16,6 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.4",
     "@commitlint/cz-commitlint": "^16.2.4",
-    "@localazy/cli": "^1.6.3",
     "@releaseband/commitlint-config": "^1.0.4",
     "@releaseband/eslint-config-typescript": "^1.0.9",
     "@releaseband/eslint-config-typescript-react": "^1.0.14",
@@ -49,23 +48,12 @@
     "vite": "^2.9.8"
   },
   "dependencies": {
-    "@pixi-spine/loader-4.0": "3.0.13",
-    "@pixi-spine/runtime-4.0": "3.0.13",
-    "@releaseband/ecs": "^0.2.5",
-    "@releaseband/mango": "^0.2.37",
+    "@pixi-spine/loader-4.1": "^3.1.0",
+    "@pixi-spine/runtime-4.1": "^3.1.0",
     "@releaseband/rowan": "^0.2.15",
-    "@xstate/fsm": "1.6.5",
-    "fp-ts": "2.11.9",
-    "i18next": "^21.8.0",
-    "i18next-browser-languagedetector": "^6.1.4",
-    "i18next-http-backend": "^1.4.0",
-    "io-ts": "2.2.16",
-    "io-ts-reporters": "2.0.1",
-    "pixi-webfont-loader": "1.0.2",
-    "pixi.js": "6.1.3",
+    "pixi.js": "^6.0.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-i18next": "^11.16.9"
+    "react-dom": "^17.0.2"
   },
   "volta": {
     "node": "16.14.0"

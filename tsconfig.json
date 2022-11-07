@@ -1,4 +1,4 @@
 {
   "extends": "@releaseband/typescript-config",
-  "include": ["src/**/*", "i18next-parser.config.js", "vite.config.ts"]
+  "include": ["src/**/*", "vite.config.ts"]
 }
