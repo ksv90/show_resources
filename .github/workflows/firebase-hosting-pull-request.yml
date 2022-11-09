@@ -32,6 +32,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set token
+        run: pnpm config set '//npm.pkg.github.com/:_authToken' ${GITHUB_TOKEN}
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
