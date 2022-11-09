@@ -8,6 +8,7 @@ name: Deploy to Firebase Hosting on merge
       - master
 env:
   NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -35,6 +36,9 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Test
+        run: echo ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
