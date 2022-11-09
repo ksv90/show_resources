@@ -6,14 +6,12 @@ name: Deploy to Firebase Hosting on merge
   push:
     branches:
       - master
-env:
-  NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
@@ -37,9 +35,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Test
-        run: echo ${{ secrets.GITHUB_TOKEN }}
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -48,4 +43,3 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VIEWING_GAME_RESOURCES }}'
           projectId: viewing-game-resources
-          node-version: '16'
