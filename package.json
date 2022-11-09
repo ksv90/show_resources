@@ -44,14 +44,15 @@
     "lint-staged": "^12.4.1",
     "markdownlint-cli": "^0.31.1",
     "prettier": "^2.6.2",
-    "typescript": "^4.6.4",
+    "typescript": "^4.8.4",
     "vite": "^2.9.8"
   },
   "dependencies": {
+    "@pixi-spine/base": "^3.1.0",
     "@pixi-spine/loader-4.1": "^3.1.0",
     "@pixi-spine/runtime-4.1": "^3.1.0",
     "@releaseband/rowan": "^0.2.15",
-    "pixi.js": "^6.0.0",
+    "pixi.js": "^6.5.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
