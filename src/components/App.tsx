@@ -1,14 +1,19 @@
 import { Spine } from '@pixi-spine/runtime-4.1';
-import { Application } from 'pixi.js';
 import { ChangeEvent, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 
-import { loadAnimations } from '../utils';
+import {
+  createApplication,
+  createText,
+  getSlotContainer,
+  loadAnimations,
+  playAnimation,
+} from '../utils';
 import Button from './Button';
 import SelectFile from './SelectFile';
 
 export default function App() {
   const ref = useRef<HTMLDivElement>(null);
-  const app = useMemo(() => new Application({ width: 1080, height: 720 }), []);
+  const app = useMemo(() => createApplication(1080, 720), []);
   const [spineList, setSpineList] = useState<Spine[]>([]);
   const [actualSpine, setActualSpine] = useState<Spine | null>(null);
 
@@ -47,8 +52,12 @@ export default function App() {
     if (!actualSpine) return;
     const { width, height } = app.view;
     actualSpine.position.set(width / 2, height / 2);
-    actualSpine.state.setAnimation(0, currentTarget.name, true);
     app.stage.addChild(actualSpine);
+    playAnimation(actualSpine, currentTarget.name);
+
+    const container = getSlotContainer(actualSpine, 'number_template_inner');
+    const text = createText('TEST', { fontSize: 150, fill: 0xff0000 });
+    container?.addChild(text);
   };
 
   return (

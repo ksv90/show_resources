@@ -1,9 +1,18 @@
 import { TextureAtlas } from '@pixi-spine/base';
 import { SpineParser } from '@pixi-spine/loader-4.1';
 import { AtlasAttachmentLoader, SkeletonJson, Spine } from '@pixi-spine/runtime-4.1';
-import { BaseTexture } from 'pixi.js';
+import { Application, BaseTexture, Container, Text, TextStyle } from 'pixi.js';
 
 SpineParser.registerLoaderPlugin();
+
+export const createApplication = (width: number, height: number, backgroundColor?: number) =>
+  new Application({ width, height, backgroundColor });
+
+export const createText = (content: string, style?: Partial<TextStyle>) => {
+  const text = new Text(content, { align: 'center', ...style });
+  text.anchor.set(0.5, 0.5);
+  return text;
+};
 
 export const splitFiles = (files: FileList): [File[], File[], File[]] => {
   const JSON_TYPE = 'application/json';
@@ -104,7 +113,17 @@ export const loadAnimations = async (files: FileList | null) => {
 
       const spine = new Spine(spineData);
       spine.name = name;
+
       return spine;
     }),
   );
+};
+
+export const getSlotContainer = (spine: Spine, name: string): Container | undefined => {
+  const index = spine.skeleton.findSlotIndex(name);
+  return spine.slotContainers[index];
+};
+
+export const playAnimation = (spine: Spine, name: string, once = false) => {
+  spine.state.setAnimation(0, name, !once);
 };
